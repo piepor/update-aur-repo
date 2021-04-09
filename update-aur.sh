@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 # check input number
-if [[ $# > 1 ]]; then
-	echo "Only one parameter allowed";
+if [[ $# > 2 ]]; then
+	echo "Only two parameters allowed";
 	exit 1
 fi
 
 path=$1;
+username=$2;
 if [[ ! -d $path ]]; then
 	echo "The $path directory doesn't exists";
 	exit 1
@@ -20,7 +21,7 @@ for d in */ ; do
 	if [[ "$state" == "$uptodate" ]]; then
 		echo $state;
 	else
-		makepkg -si;
+		sudo -u username makepkg -si;
 	fi
 	cd ..;
 done
